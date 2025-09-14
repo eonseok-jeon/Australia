@@ -28,14 +28,9 @@ export function HotelSchedule() {
           >
             <IconBed size={20} />
           </ThemeIcon>
-          <div>
-            <Title order={3} c='indigo'>
-              숙소 일정
-            </Title>
-            <Text c='dimmed' size='sm'>
-              편안한 휴식을 위한 호텔
-            </Text>
-          </div>
+          <Title order={3} c='indigo'>
+            숙소 일정
+          </Title>
         </Group>
         <Badge variant='light' color='indigo' size='sm' radius='xl'>
           총 {totalNights}박

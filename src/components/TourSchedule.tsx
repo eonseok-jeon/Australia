@@ -40,14 +40,9 @@ export function TourSchedule() {
             >
               <IconMapPin size={20} />
             </ThemeIcon>
-            <div>
-              <Title order={3} c='violet'>
-                투어 일정
-              </Title>
-              <Text c='dimmed' size='sm'>
-                호주에서의 특별한 경험들
-              </Text>
-            </div>
+            <Title order={3} c='violet'>
+              투어 일정
+            </Title>
           </Group>
           <Group gap='xs'>
             <Badge variant='light' color='violet' size='sm' radius='xl'>
