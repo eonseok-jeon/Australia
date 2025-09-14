@@ -9,13 +9,14 @@ import {
   Center,
   Divider,
   Box,
+  Tabs,
 } from '@mantine/core';
-import { IconPlane } from '@tabler/icons-react';
+import { IconPlane, IconBed, IconCalendarEvent } from '@tabler/icons-react';
 import { flightData } from '../data/flights';
 import { FlightSegment } from './FlightSegment';
 import { HotelSchedule } from './HotelSchedule';
 
-export function FlightSchedule() {
+export function TravelSchedule() {
   return (
     <Box
       style={{
@@ -69,29 +70,52 @@ export function FlightSchedule() {
           </Paper>
         </Center>
 
-        <Divider
-          my='xl'
-          label='항공편 일정'
-          labelPosition='center'
-          color='blue.3'
-        />
+        {/* 탭 네비게이션 */}
+        <Tabs
+          defaultValue='flights'
+          variant='pills'
+          radius='xl'
+          color='blue'
+          styles={{
+            root: {
+              marginTop: '2rem',
+            },
+            list: {
+              justifyContent: 'center',
+              marginBottom: '2rem',
+            },
+            tab: {
+              fontWeight: 600,
+              fontSize: '14px',
+              padding: '12px 24px',
+              '&[data-active]': {
+                background: 'linear-gradient(45deg, #1c7ed6, #9775fa)',
+                border: 'none',
+              },
+            },
+          }}
+        >
+          <Tabs.List>
+            <Tabs.Tab value='flights' leftSection={<IconPlane size={18} />}>
+              항공편 일정
+            </Tabs.Tab>
+            <Tabs.Tab value='hotels' leftSection={<IconBed size={18} />}>
+              숙소 일정
+            </Tabs.Tab>
+          </Tabs.List>
 
-        {/* 항공편 세그먼트들 */}
-        <Stack gap='xl' mb='xl'>
-          {flightData.map((segment, index) => (
-            <FlightSegment key={index} segment={segment} />
-          ))}
-        </Stack>
+          <Tabs.Panel value='flights'>
+            <Stack gap='xl'>
+              {flightData.map((segment, index) => (
+                <FlightSegment key={index} segment={segment} />
+              ))}
+            </Stack>
+          </Tabs.Panel>
 
-        <Divider
-          my='xl'
-          label='숙소 일정'
-          labelPosition='center'
-          color='indigo.3'
-        />
-
-        {/* 숙소 일정 */}
-        <HotelSchedule />
+          <Tabs.Panel value='hotels'>
+            <HotelSchedule />
+          </Tabs.Panel>
+        </Tabs>
       </Container>
     </Box>
   );

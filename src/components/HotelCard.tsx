@@ -6,18 +6,12 @@ import {
   Stack,
   ThemeIcon,
   Button,
-  Rating,
-  Divider,
-  Anchor,
   Pill,
   Card,
-  Image,
   Flex,
 } from '@mantine/core';
 import {
   IconBed,
-  IconCalendarEvent,
-  IconClock,
   IconStar,
   IconMapPin,
   IconExternalLink,

@@ -1,5 +1,5 @@
 import { MantineProvider, createTheme } from '@mantine/core';
-import { FlightSchedule } from './components/FlightSchedule';
+import { TravelSchedule } from './components/TravelSchedule';
 
 const theme = createTheme({
   primaryColor: 'blue',
@@ -27,7 +27,7 @@ const theme = createTheme({
 function App() {
   return (
     <MantineProvider theme={theme}>
-      <FlightSchedule />
+      <TravelSchedule />
     </MantineProvider>
   );
 }
