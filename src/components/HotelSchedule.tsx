@@ -1,7 +1,6 @@
 import {
   Paper,
   Group,
-  Text,
   Badge,
   Stack,
   ThemeIcon,
