@@ -13,6 +13,7 @@ import {
 import { IconPlane } from '@tabler/icons-react';
 import { flightData } from '../data/flights';
 import { FlightSegment } from './FlightSegment';
+import { HotelSchedule } from './HotelSchedule';
 
 export function FlightSchedule() {
   return (
@@ -51,17 +52,17 @@ export function FlightSchedule() {
                 호주 여행
               </Title>
               <Text c='dimmed' size='sm' ta='center'>
-                2025.10.31 금 - 2025.11.09 일
+                부모님과 함께하는 특별한 여행
               </Text>
               <Group gap='xs'>
                 <Badge variant='light' color='blue' size='sm'>
-                  2025
+                  2025.10.31 - 11.09
                 </Badge>
                 <Text c='dimmed' size='xs'>
                   •
                 </Text>
                 <Badge variant='light' color='grape' size='sm'>
-                  8박 10일
+                  7박 10일
                 </Badge>
               </Group>
             </Stack>
@@ -76,11 +77,21 @@ export function FlightSchedule() {
         />
 
         {/* 항공편 세그먼트들 */}
-        <Stack gap='xl'>
+        <Stack gap='xl' mb='xl'>
           {flightData.map((segment, index) => (
             <FlightSegment key={index} segment={segment} />
           ))}
         </Stack>
+
+        <Divider
+          my='xl'
+          label='숙소 일정'
+          labelPosition='center'
+          color='indigo.3'
+        />
+
+        {/* 숙소 일정 */}
+        <HotelSchedule />
       </Container>
     </Box>
   );
