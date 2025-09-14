@@ -76,31 +76,6 @@ export function TourChoiceCard({ choice, choiceNumber }: TourChoiceCardProps) {
           )}
         </Group>
 
-        {/* 간단한 정보 */}
-        <Group gap='xs' mb='md'>
-          <ThemeIcon size='sm' variant='light' color='blue'>
-            <IconStar size={12} />
-          </ThemeIcon>
-          <Text size='sm' c='dimmed'>
-            {choice.spots.length}개 장소 •
-            {choice.spots.reduce(
-              (total, spot) => total + spot.estimatedTime,
-              0
-            ) >= 60
-              ? `${Math.floor(
-                  choice.spots.reduce(
-                    (total, spot) => total + spot.estimatedTime,
-                    0
-                  ) / 60
-                )}시간`
-              : `${choice.spots.reduce(
-                  (total, spot) => total + spot.estimatedTime,
-                  0
-                )}분`}{' '}
-            소요
-          </Text>
-        </Group>
-
         {/* 상세 정보 토글 버튼 */}
         <Button
           variant='light'
