@@ -13,7 +13,6 @@ import {
   IconChevronDown,
   IconChevronUp,
   IconCurrencyWon,
-  IconStar,
 } from '@tabler/icons-react';
 import { useState } from 'react';
 import type { TourChoice } from '../types/tour';
