@@ -7,11 +7,10 @@ import {
   Badge,
   Stack,
   Center,
-  Divider,
   Box,
   Tabs,
 } from '@mantine/core';
-import { IconPlane, IconBed, IconCalendarEvent } from '@tabler/icons-react';
+import { IconPlane, IconBed } from '@tabler/icons-react';
 import { flightData } from '../data/flights';
 import { FlightSegment } from './FlightSegment';
 import { HotelSchedule } from './HotelSchedule';

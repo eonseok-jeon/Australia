@@ -10,10 +10,11 @@ import {
   Box,
   Tabs,
 } from '@mantine/core';
-import { IconPlane, IconBed } from '@tabler/icons-react';
+import { IconPlane, IconBed, IconMapPin } from '@tabler/icons-react';
 import { flightData } from '../data/flights';
 import { FlightSegment } from './FlightSegment';
 import { HotelSchedule } from './HotelSchedule';
+import { TourSchedule } from './TourSchedule';
 
 export function TravelSchedule() {
   return (
@@ -121,6 +122,9 @@ export function TravelSchedule() {
               <Tabs.Tab value='hotels' leftSection={<IconBed size={18} />}>
                 숙소 일정
               </Tabs.Tab>
+              <Tabs.Tab value='tours' leftSection={<IconMapPin size={18} />}>
+                투어 일정
+              </Tabs.Tab>
             </Tabs.List>
 
             <Tabs.Panel value='flights' pt='xl'>
@@ -133,6 +137,10 @@ export function TravelSchedule() {
 
             <Tabs.Panel value='hotels' pt='xl'>
               <HotelSchedule />
+            </Tabs.Panel>
+
+            <Tabs.Panel value='tours' pt='xl'>
+              <TourSchedule />
             </Tabs.Panel>
           </Tabs>
         </Paper>
