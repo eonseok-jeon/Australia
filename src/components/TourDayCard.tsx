@@ -84,7 +84,7 @@ export function TourDayCard({ day }: TourDayCardProps) {
             <TourSpotCard
               key={spot.id}
               spot={spot}
-              isLast={index === day.spots.length - 1}
+              isLast={index === (day.spots?.length ?? 0) - 1}
             />
           ))}
         </Stack>
