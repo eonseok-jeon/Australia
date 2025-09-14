@@ -52,9 +52,6 @@ export function TravelSchedule() {
               >
                 호주 여행
               </Title>
-              <Text c='dimmed' size='sm' ta='center'>
-                부모님과 함께하는 특별한 여행
-              </Text>
               <Group gap='xs'>
                 <Badge variant='light' color='blue' size='sm'>
                   2025.10.31 - 11.09
