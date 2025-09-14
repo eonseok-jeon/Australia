@@ -14,6 +14,7 @@ import {
   IconPlaneDeparture,
   IconHome,
   IconClock,
+  IconHourglass,
 } from '@tabler/icons-react';
 import type { Flight } from '../types/flight';
 
@@ -22,6 +23,65 @@ interface FlightCardProps {
 }
 
 export function FlightCard({ flight }: FlightCardProps) {
+  // 비행시간 계산 함수
+  const calculateFlightDuration = () => {
+    // 날짜와 시간을 파싱
+    const parseDateTime = (date: string, time: string) => {
+      // date 형식: "10/31 금" 또는 "11/01 토"
+      // time 형식: "12:55 PM" 또는 "1:55 PM"
+
+      const [month, dayWithWeekday] = date.split('/');
+      const day = dayWithWeekday.split(' ')[0];
+
+      // 12시간 형식을 24시간 형식으로 변환
+      const [timeStr, period] = time.split(' ');
+      const [hours, minutes] = timeStr.split(':').map(Number);
+
+      let hour24 = hours;
+      if (period === 'PM' && hours !== 12) {
+        hour24 += 12;
+      } else if (period === 'AM' && hours === 12) {
+        hour24 = 0;
+      }
+
+      // 2024년으로 가정 (실제로는 여행 연도에 맞춰 조정)
+      const year = 2024;
+      return new Date(
+        year,
+        parseInt(month) - 1,
+        parseInt(day),
+        hour24,
+        minutes
+      );
+    };
+
+    const departureDateTime = parseDateTime(
+      flight.departure.date,
+      flight.departure.time
+    );
+    const arrivalDateTime = parseDateTime(
+      flight.arrival.date,
+      flight.arrival.time
+    );
+
+    // 도착이 다음날인 경우 처리
+    if (arrivalDateTime < departureDateTime) {
+      arrivalDateTime.setDate(arrivalDateTime.getDate() + 1);
+    }
+
+    const durationMs = arrivalDateTime.getTime() - departureDateTime.getTime();
+    const durationHours = Math.floor(durationMs / (1000 * 60 * 60));
+    const durationMinutes = Math.floor(
+      (durationMs % (1000 * 60 * 60)) / (1000 * 60)
+    );
+
+    if (durationHours > 0) {
+      return `${durationHours}시간 ${durationMinutes}분`;
+    } else {
+      return `${durationMinutes}분`;
+    }
+  };
+
   const getFlightTypeConfig = (type: Flight['type']) => {
     switch (type) {
       case 'departure':
@@ -183,10 +243,24 @@ export function FlightCard({ flight }: FlightCardProps) {
               <IconClock size={14} />
             </ThemeIcon>
             <Text size='sm' c='dimmed' fw={500}>
-              비행 중
+              비행시간: {flight.flightDuration || calculateFlightDuration()}
             </Text>
           </Group>
         </Center>
+
+        {/* 체류 시간 표시 */}
+        {flight.layover && (
+          <Center mt='xs'>
+            <Group gap='xs'>
+              <ThemeIcon size='sm' variant='light' color='grape' radius='xl'>
+                <IconHourglass size={14} />
+              </ThemeIcon>
+              <Text size='sm' c='grape' fw={500}>
+                체류시간: {flight.layover.duration}
+              </Text>
+            </Group>
+          </Center>
+        )}
       </Paper>
     </Paper>
   );

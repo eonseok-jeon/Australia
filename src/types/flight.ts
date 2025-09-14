@@ -13,8 +13,13 @@ export interface Flight {
     time: string;
     date: string;
   };
-  duration?: string;
+  flightDuration?: string;
   type: 'departure' | 'return' | 'domestic';
+  layover?: {
+    airport: string;
+    city: string;
+    duration: string;
+  };
 }
 
 export interface FlightSegment {
